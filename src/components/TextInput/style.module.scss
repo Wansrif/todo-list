@@ -1,0 +1,33 @@
+@import '@styles/base';
+
+.todoInput {
+  background-color: $color-light-blue;
+  border: none;
+  border-radius: 0.5rem;
+  color: $color-dark-blue;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 0 1rem 2.5rem;
+  width: 100%;
+
+  &::placeholder {
+    color: $ark-grayish-blue;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.dark {
+    background-color: $very-dark-desaturated-blue;
+    color: $color-white;
+  }
+}
+
+@media screen and (max-width: 486px) {
+  .todoInput {
+    padding: 1rem 2.5rem 1rem 2.5rem;
+  }
+}

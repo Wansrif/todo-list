@@ -1,0 +1,7 @@
+@import '@styles/base';
+
+.layoutWrapper {
+  margin-top: var(--height, '4rem');
+  width: 100vw;
+  height: calc(100vh - var(--height, '4rem'));
+}

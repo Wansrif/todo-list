@@ -1,0 +1,481 @@
+@import '@styles/base';
+
+.container {
+  background-color: $color-light-blue;
+  height: 100dvh;
+  /* Define the main style for the scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+
+  /* Style the scrollbar track */
+  ::-webkit-scrollbar-track {
+    background-color: $color-light-blue; /* Color of the track */
+    border-top-right-radius: 0.5rem; /* Rounded corners for the track */
+  }
+
+  /* Style the scrollbar thumb (the draggable handle) */
+  ::-webkit-scrollbar-thumb {
+    background-color: $dark-grayish-blue; /* Color of the thumb */
+    border-radius: 0.5rem; /* Rounded corners for the thumb */
+  }
+
+  /* Add styles for the scrollbar thumb when hovered */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color of the thumb when hovered */
+  }
+
+  &.dark {
+    background-color: $very-dark-blue;
+
+    /* Style the scrollbar track */
+    ::-webkit-scrollbar-track {
+      background-color: $very-dark-desaturated-blue; /* Color of the track */
+      border-top-right-radius: 0.5rem; /* Rounded corners for the track */
+    }
+
+    /* Style the scrollbar thumb (the draggable handle) */
+    ::-webkit-scrollbar-thumb {
+      background-color: $very-dark-grayish-blue; /* Color of the thumb */
+      border-radius: 0.5rem; /* Rounded corners for the thumb */
+    }
+
+    /* Add styles for the scrollbar thumb when hovered */
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #555; /* Color of the thumb when hovered */
+    }
+  }
+
+  .bgDesktop {
+    background-size: cover;
+    height: 15rem;
+  }
+
+  .todoLayout {
+    // border-radius: 0.5rem;
+    margin: -12rem auto 0 auto;
+    max-width: 40%;
+
+    .todoHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+
+      .todoHeader__title {
+        color: $color-white;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1rem;
+      }
+
+      .todoHeader__theme {
+        color: $color-white;
+        cursor: pointer;
+      }
+    }
+
+    .formSubmit {
+      position: relative;
+
+      .todoList__icon {
+        position: absolute;
+        top: 0.8rem;
+        left: 0.75rem;
+
+        height: 1.5rem;
+        width: 1.25rem;
+
+        color: $very-dark-blue;
+
+        &.dark {
+          color: $color-white;
+        }
+      }
+
+      .submitTodo {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+
+        color: $ery-dark-grayish-blue;
+        background-color: transparent;
+        cursor: pointer;
+
+        padding: 0.25rem;
+        border: none;
+        border-radius: 0.5rem;
+        box-shadow:
+          rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+          rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+        &:hover {
+          color: $dark-grayish-blue;
+        }
+
+        &.dark {
+          color: $color-white;
+          background-color: transparent;
+          cursor: pointer;
+
+          padding: 0.25rem;
+
+          &:hover {
+            color: $color-white-fade;
+          }
+        }
+      }
+    }
+
+    .todoList {
+      margin-top: 1rem;
+      @include directionY;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      box-shadow:
+        rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+      overflow: hidden;
+
+      .todoList__body {
+        max-height: 15rem;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        overflow: hidden;
+
+        &.scrollY {
+          overflow-y: scroll;
+          scrollbar-width: thin;
+          scrollbar-color: $dark-grayish-blue $color-light-blue;
+        }
+
+        .todoList__item {
+          @include directionX;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
+
+          background-color: $color-light-blue;
+          color: $color-dark-blue;
+          border: none;
+          border-bottom: 1px solid $dark-grayish-blue;
+          padding: 0.5rem 1rem 0.5rem 2.5rem;
+
+          &.dark {
+            color: $color-white;
+            background-color: $very-dark-desaturated-blue;
+          }
+
+          .checkboxContainer {
+            position: relative;
+
+            .checkboxInput {
+              position: absolute;
+              top: 0.5rem;
+
+              display: none;
+            }
+
+            .checkboxInput + label {
+              position: relative;
+              padding-left: 0.25rem;
+              cursor: pointer;
+            }
+
+            .checkboxInput + label::before {
+              content: '';
+              position: absolute;
+              left: -1.5rem;
+              top: -0.15rem;
+              width: 1.25rem;
+              height: 1.25rem;
+              border: 1px solid #ccc;
+              border-radius: 50%;
+            }
+
+            .checkboxInput:checked + label::before {
+              background-image: linear-gradient(270deg, #fb6564 0%, #a03cea 100%);
+              content: '\2713'; /* Unicode checkmark symbol */
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white; /* Set the color of the checkmark */
+            }
+
+            .todoList__item__text {
+              font-size: 0.75rem;
+              font-weight: 400;
+              text-decoration: none;
+
+              cursor: pointer;
+            }
+
+            .completed {
+              text-decoration: line-through;
+              color: $dark-grayish-blue;
+            }
+          }
+
+          .opsi {
+            @include directionX;
+            align-items: center;
+            gap: 1rem;
+
+            .todoList__item__edit {
+              cursor: pointer;
+            }
+
+            .todoList__item__delete {
+              cursor: pointer;
+            }
+          }
+        }
+
+        .todoList__item__none {
+          @include directionX;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
+
+          background-color: $color-light-blue;
+          color: $color-dark-blue;
+          border: none;
+          border-bottom: 1px solid $dark-grayish-blue;
+          padding: 0.5rem 1rem;
+
+          &.dark {
+            color: $color-white;
+            background-color: $very-dark-desaturated-blue;
+          }
+        }
+      }
+
+      .todoFooter {
+        @include directionX;
+        align-items: center;
+        justify-content: space-between;
+
+        background-color: $color-light-blue;
+        color: $color-dark-blue;
+        border: none;
+        padding: 1rem 1rem 1rem 1rem;
+
+        font-size: 0.75rem;
+
+        &.dark {
+          color: $color-white;
+          background-color: $very-dark-desaturated-blue;
+        }
+
+        .itemLeft {
+          @include directionX;
+          align-items: center;
+          justify-content: space-between;
+
+          color: $ark-grayish-blue;
+        }
+
+        .options {
+          @include directionX;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+
+          button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: $dark-grayish-blue;
+
+            &:hover {
+              color: $bright-blue;
+            }
+
+            &.active {
+              color: $bright-blue;
+            }
+          }
+        }
+
+        .clearComplete {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: $dark-grayish-blue;
+
+          &:hover {
+            color: $bright-blue;
+          }
+        }
+      }
+    }
+  }
+
+  .optionsMobile {
+    display: none;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+
+    color: $ery-dark-grayish-blue;
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 486px) {
+  .container {
+    .todoLayout {
+      max-width: 90%;
+
+      .todoHeader {
+        .todoHeader__title {
+          font-size: 1.5rem;
+        }
+      }
+
+      .todoList {
+        .todoList__body {
+          max-height: 28.25rem;
+
+          .todoList__item {
+            @include directionX;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+
+            background-color: $color-light-blue;
+            color: $color-dark-blue;
+            border: none;
+            border-bottom: 1px solid $dark-grayish-blue;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+
+            &.dark {
+              color: $color-white;
+              background-color: $very-dark-desaturated-blue;
+            }
+
+            .checkboxContainer {
+              position: relative;
+
+              .checkboxInput {
+                position: absolute;
+                top: 0.5rem;
+
+                display: none;
+              }
+
+              .checkboxInput + label {
+                position: relative;
+                padding-left: 0.25rem;
+                cursor: pointer;
+              }
+
+              .checkboxInput + label::before {
+                content: '';
+                position: absolute;
+                left: -1.5rem;
+                top: -0.15rem;
+                width: 1.25rem;
+                height: 1.25rem;
+                border: 1px solid #ccc;
+                border-radius: 50%;
+              }
+
+              .checkboxInput:checked + label::before {
+                background-image: linear-gradient(270deg, #fb6564 0%, #a03cea 100%);
+                content: '\2713'; /* Unicode checkmark symbol */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white; /* Set the color of the checkmark */
+              }
+
+              .todoList__item__text {
+                font-size: 0.75rem;
+                font-weight: 400;
+                text-decoration: none;
+
+                cursor: pointer;
+              }
+
+              .completed {
+                text-decoration: line-through;
+                color: $dark-grayish-blue;
+              }
+            }
+
+            .opsi {
+              @include directionX;
+              align-items: center;
+              gap: 1rem;
+
+              .todoList__item__edit {
+                cursor: pointer;
+              }
+
+              .todoList__item__delete {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .todoFooter {
+          .options {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .optionsMobile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 1.2rem 1rem 1.2rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+
+      background-color: $color-light-blue;
+      box-shadow:
+        rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+      &.dark {
+        background-color: $very-dark-desaturated-blue;
+      }
+    }
+
+    .optionsMobile button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: $dark-grayish-blue;
+
+      &:hover {
+        color: $bright-blue;
+      }
+
+      &.active {
+        color: $bright-blue;
+      }
+    }
+  }
+}
