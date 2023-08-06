@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# todo-list
-=======
 # ToDo List App
 
 ## Description
@@ -54,4 +51,3 @@ yarn start
 
 - Special thanks to the creators of React, Redux, and Material-UI for their awesome libraries.
 - Thanks to Netlify for hosting the live demo.
->>>>>>> master
